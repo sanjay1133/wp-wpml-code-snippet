@@ -13,7 +13,7 @@ This is a list of useful **WordPress** and **WPML** code snippets and functions 
 ## WPML
 
 - [ADD Language to body class](#add-language-to-body-class)
-- [ADD page slug default language to body class](#add-page-slug-default-language-to-body-class.php)
+- [ADD page slug default language to body class](#add-page-slug-default-language-to-body-class)
 
 ---
 
@@ -26,7 +26,6 @@ This is a list of useful **WordPress** and **WPML** code snippets and functions 
  * ADD Language to body class
  */
 if ( !function_exists( 'gwl_body_class' ) ) {
-	
 	function gwl_body_class( $classes ) {
 		
 		// Add language slug to body classes
@@ -46,9 +45,9 @@ add_filter( 'body_class', 'gwl_body_class' );
 /**
  * ADD page slug default language to body class
  */
-if ( ! function_exists( 'so_body_class' ) ) {
+if ( ! function_exists( 'gwl_body_class' ) ) {
 
-	function so_body_class( $classes ) {
+	function gwl_body_class( $classes ) {
 
 		global $post;
 		$default_lang = apply_filters( 'wpml_default_language', NULL );
@@ -60,12 +59,10 @@ if ( ! function_exists( 'so_body_class' ) ) {
 				$classes[]  = sanitize_html_class( get_post_field( 'post_name', $default_lang_id ) );
 			}
 		}
-
 		return $classes;
 	}
 }
-
-add_filter( 'body_class', 'so_body_class' );
+add_filter( 'body_class', 'gwl_body_class' );
 ```
 
 ---
